@@ -1,38 +1,41 @@
-import React, { useState } from 'react';
-import { 
-  Box, 
-  VStack, 
-  HStack, 
-  Text, 
-  Heading, 
-  Image, 
-  Flex, 
-  Grid, 
-  GridItem, 
-  Link,
-  Button,
-  useClipboard,
-  Container
-} from '@chakra-ui/react';
+'use client';
+
+import React, { useState, useEffect, useRef } from 'react';
 import { 
   FaGithub, 
   FaLinkedin,
   FaEnvelope,
   FaPhone,
+  FaCopy,
+  FaClipboard,
   FaExternalLinkAlt, 
   FaTools,
-  FaUniversity,
-  FaCertificate
+  FaChevronUp
 } from 'react-icons/fa';
+import { IoAdd } from 'react-icons/io5';
+import { BsCode } from 'react-icons/bs';
+import Image from "next/image";
+import { Montserrat } from 'next/font/google';
+
+import { LocomotiveScrollProvider } from 'react-locomotive-scroll';
+import 'locomotive-scroll/dist/locomotive-scroll.css';
+
+// Configure Montserrat font with multiple weights
+const montserrat = Montserrat({ 
+  subsets: ['latin'],
+  weight: ['300', '400', '600', '700', '800']
+});
 
 const Resume = () => {
-  const { hasCopied, onCopy } = useClipboard('vyasvishal.work@gmail.com');
+  const [copied, setCopied] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
+  const containerRef = useRef(null);
 
   const projects = [
     {
       title: "Rajwen",
       description: "Modern restaurant platform featuring real-time ordering, secure payment processing, and an intuitive admin dashboard for menu management.",
-      image: "https://via.placeholder.com/400x300",
+      image: "/Rajwen.jpg",
       techStack: ["React.js", "Node.js", "Express", "Firebase", "Stripe"],
       github: "https://github.com/username/rajwen",
       live: "https://rajwen.demo",
@@ -40,7 +43,7 @@ const Resume = () => {
     {
       title: "Raaaz.io",
       description: "Real-time chat application with features like instant messaging, and user presence indicators.",
-      image: "https://via.placeholder.com/400x300",
+      image: "/Raaaz.io.png",
       techStack: ["Socket.io", "Node.js", "MongoDB", "Express", "JWT"],
       github: "https://github.com/username/raaaz",
       live: "https://raaaz.io",
@@ -48,253 +51,297 @@ const Resume = () => {
     {
       title: "Uber Clone",
       description: "Ride-booking app with real-time tracking, user authentication, and payment integration.",
-      image: "https://via.placeholder.com/400x300",
+      image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRh4fpHeifo1l4Q7oI0kpRN-sS8W6ixi7oPuA&s",
       techStack: ["React", "Node.js", "MongoDB", "Next.js", "WebRTC"],
       github: "https://github.com/username/uber-clone",
       live: "https://uber-clone.demo",
-    },
-    {
-      title: "CodeLab Club",
-      description: "Student-led tech innovation hub. As the Head of CodeLab, I led initiatives to foster coding skills, organize hackathons, and develop collaborative tech projects.",
-      image: "https://via.placeholder.com/400x300",
-      techStack: ["Leadership", "Project Management", "Community Building", "Tech Innovation"],
-      github: "https://github.com/codelab-club",
-      live: "https://codelab-club.demo",
     }
   ];
 
+  const copyEmail = () => {
+    navigator.clipboard.writeText('vyasvishal.work@gmail.com');
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
+  const toggleVisibility = () => {
+    if (window.pageYOffset > 300) {
+      setIsVisible(true);
+    } else {
+      setIsVisible(false);
+    }
+  };
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
+
+  useEffect(() => {
+    window.addEventListener('scroll', toggleVisibility);
+    return () => window.removeEventListener('scroll', toggleVisibility);
+  }, []);
+
   return (
-    <Box 
-      bg="gray.900" 
-      color="white" 
-      minHeight="100vh" 
-      py={16}
-      className="bg-gradient-to-br from-gray-900 to-black"
+    <LocomotiveScrollProvider
+      options={{ 
+        smooth: true,
+        direction: 'vertical',
+        smartphone: { smooth: true },
+        tablet: { smooth: true }
+      }}
+      containerRef={containerRef}
+      onUpdate={(obj) => {
+        // Track scroll progress
+        toggleVisibility(obj.scroll.progress);
+      }}
+      watch={[
+        // Recompute when these dependencies change
+        copied
+      ]}
     >
-      <Container maxW="container.xl">
-        <Grid templateColumns={{ base: "1fr", md: "repeat(2, 1fr)" }} gap={8}>
-          {/* Profile Section */}
-          <GridItem>
-            <VStack 
-              spacing={6} 
-              align="stretch" 
-              bg="gray.800" 
-              p={6} 
-              borderRadius="xl"
-              boxShadow="lg"
-              transition="all 0.3s"
-              _hover={{ transform: "scale(1.02)", boxShadow: "xl" }}
-            >
-              <Image 
-                src="/me2.jpg" 
-                alt="Vishal Vyas" 
-                objectFit="cover" 
-                borderRadius="xl"
-                boxShadow="md"
+      <main data-scroll-container ref={containerRef} className={`${montserrat.className} min-h-screen bg-[#0a0a0a] text-white`}>
+       
+        <div className="max-w-6xl mx-auto p-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 rounded-2xl overflow-hidden bg-[#111111] shadow-2xl">
+            {/* Left Column - Image and Title */}
+            <div className="relative">
+              <Image
+                src="/me2.jpg"
+                alt="Profile" 
+                width={500}
+                height={500}
+                className="w-full h-[400px] object-cover opacity-90"
               />
-              <VStack align="start" spacing={2}>
-                <Text 
-                  textTransform="uppercase" 
-                  letterSpacing="wide" 
-                  color="blue.400" 
-                  fontWeight="bold"
-                >
-                  Full Stack Developer
-                </Text>
-                <Heading size="xl" fontWeight="bold">Vishal Vyas</Heading>
-                <Text color="gray.400">Head of CodeLab Student Tech Club</Text>
-              </VStack>
+              <div className="absolute bottom-0 left-0 p-6 bg-black/70 backdrop-blur-sm w-full">
+                <h3 className={`text-sm uppercase tracking-wider text-sky-500 font-semibold ${montserrat.className}`}>
+                  HEAD OF CODELAB
+                </h3>
+                <h2 className={`text-2xl font-bold mt-1 text-white ${montserrat.className}`}>
+                  FULL STACK DEVELOPER
+                </h2>
+                <p className={`mt-2 text-gray-200 font-light ${montserrat.className}`}>
+                  Bachelor In Computer Science
+                </p>
+              </div>
+            </div>
 
-              {/* Contact Information */}
-              <VStack align="start" spacing={3} w="full">
-                <HStack spacing={4}>
-                  <FaEnvelope color="#4299E1" />
-                  <Text>{hasCopied ? "Email Copied!" : "vyasvishal.work@gmail.com"}</Text>
-                  <Button 
-                    size="sm" 
-                    colorScheme="blue" 
-                    onClick={onCopy}
+            {/* Right Column - Personal Info */}
+            <div className="flex flex-col justify-center p-8 space-y-6">
+              <h1 className={`text-6xl font-extrabold tracking-wide text-transparent bg-clip-text bg-gradient-to-r text-white ${montserrat.className}`}>
+                VISHAL VYAS
+              </h1>
+              <div className="space-y-3 text-gray-200">
+                <div className="flex items-center gap-3">
+                  <FaPhone className="text-sky-400" />
+                  <p className="font-light">9726270553</p>
+                </div>
+                <div className="flex items-center gap-3 relative">
+                  <FaEnvelope className="text-sky-400" />
+                  <p className="font-light">vyasvishal.work@gmail.com</p>
+                  <button 
+                    onClick={copyEmail} 
+                    className="ml-2 text-sky-400 hover:text-sky-600 transition-colors"
+                    title="Copy Email"
                   >
-                    Copy
-                  </Button>
-                </HStack>
-                <HStack spacing={4}>
-                  <FaPhone color="#4299E1" />
-                  <Text>9726270553</Text>
-                </HStack>
-              </VStack>
-
-              {/* Social Links */}
-              <HStack spacing={4}>
-                <Link href="#" isExternal>
+                    {copied ? <FaClipboard /> : <FaCopy />}
+                  </button>
+                </div>
+              </div>
+              
+              <div className="flex gap-4 mt-4">
+                <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-sky-400 transition-colors">
                   <FaGithub size={28} />
-                </Link>
-                <Link href="#" isExternal>
+                </a>
+                <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-sky-400 transition-colors">
                   <FaLinkedin size={28} />
-                </Link>
-              </HStack>
-            </VStack>
-          </GridItem>
+                </a>
+              </div>
+              
+              <div className="mt-6 bg-[#1a1a1a] p-6 rounded-xl">
+                <div className="flex items-center gap-3 mb-4">
+                  <IoAdd className="text-sky-400 text-xl" />
+                  <h3 className={`uppercase tracking-wider text-sky-500 font-semibold ${montserrat.className}`}>
+                    About Me
+                  </h3>
+                </div>
+                <p className={`text-gray-200 leading-relaxed font-light ${montserrat.className}`}>
+                 
+                I&#39;m Vyas Vishal, a <span className="font-bold">Full Stack Developer</span> and <span className="font-bold"> Head of CodeLab</span> Club at Ganpat University. With expertise in the <span className="font-bold">MERN stack</span>, I&#39;ve developed and deployed multiple production-ready, end-to-end applications, showcasing my skills in scalable and efficient development.
+                </p>
+              </div>
+            </div>
+          </div>
 
-          {/* About and Skills Section */}
-          <GridItem>
-            <VStack spacing={6} align="stretch">
-              {/* About Me */}
-              <Box 
-                bg="gray.800" 
-                p={6} 
-                borderRadius="xl"
-                boxShadow="lg"
-                transition="all 0.3s"
-                _hover={{ transform: "scale(1.02)", boxShadow: "xl" }}
-              >
-                <Heading 
-                  size="md" 
-                  mb={4} 
-                  textTransform="uppercase" 
-                  color="blue.400"
-                >
-                  About Me
-                </Heading>
-                <Text color="gray.300" lineHeight="tall">
-                  Hi, I'm Vyas Vishal, a Full Stack Software Engineer and the Head of CodeLab Student Tech Club. 
-                  I specialize in developing innovative web applications that solve real-world problems.
-                </Text>
-              </Box>
+          {/* Skills Section */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
+            <div className="bg-[#111111] rounded-lg p-6">
+              <div className="flex items-center gap-2 mb-4">
+                <BsCode className="text-sky-400" />
+                <h3 className={`uppercase tracking-wider text-sky-500 font-semibold ${montserrat.className}`}>
+                  SKILLS
+                </h3>
+              </div>
+              
+              <div className="grid grid-cols-2 gap-4">
+                {[
+                  { title: "Front-End", skills: ["HTML & CSS", "JavaScript", "React.js"] },
+                  { title: "Back-End", skills: ["Node.js", "Express.js","restful api"] },
+                  { title: "Database", skills: ["MongoDB", "SQL", "Firebase"] },
+                  { title: "Soft Skills", skills: ["Problem Solving", "Creative Thinking" , "Leadership"] }
+                ].map((category, index) => (
+                  <div key={index} className="space-y-2">
+                    <h4 className={`text-gray-100 font-medium ${montserrat.className}`}>
+                      {category.title}
+                    </h4>
+                    {category.skills.map((skill, idx) => (
+                      <p key={idx} className={`text-gray-300 text-sm font-light ${montserrat.className}`}>
+                        {skill}
+                      </p>
+                    ))}
+                  </div>
+                ))}
+              </div>
+            </div>
 
-              {/* Skills */}
-              <Box 
-                bg="gray.800" 
-                p={6} 
-                borderRadius="xl"
-                boxShadow="lg"
-                transition="all 0.3s"
-                _hover={{ transform: "scale(1.02)", boxShadow: "xl" }}
-              >
-                <Heading 
-                  size="md" 
-                  mb={4} 
-                  textTransform="uppercase" 
-                  color="blue.400"
-                >
-                  Skills
-                </Heading>
-                <Grid templateColumns="repeat(2, 1fr)" gap={4}>
-                  {[
-                    { title: "Front-End", skills: ["HTML", "CSS", "JavaScript", "React.js"] },
-                    { title: "Back-End", skills: ["Node.js", "Express.js", "Python"] },
-                    { title: "Database", skills: ["MongoDB", "SQL", "Firebase"] },
-                    { title: "Soft Skills", skills: ["Leadership", "Problem Solving", "Communication"] }
-                  ].map((category, index) => (
-                    <VStack key={index} align="start" spacing={2}>
-                      <Text fontWeight="bold" color="gray.200">{category.title}</Text>
-                      {category.skills.map((skill, idx) => (
-                        <Text key={idx} color="gray.400" fontSize="sm">
-                          {skill}
-                        </Text>
-                      ))}
-                    </VStack>
-                  ))}
-                </Grid>
-              </Box>
-            </VStack>
-          </GridItem>
+            {/* Education Section */}
+            <div className="bg-[#111111] rounded-lg p-6">
+              <div className="flex items-center gap-2 mb-4">
+                <IoAdd className="text-sky-400" />
+                <h3 className={`uppercase tracking-wider text-sky-500 font-semibold ${montserrat.className}`}>
+                  EDUCATION
+                </h3>
+              </div>
+              
+              <div>
+                <p className={`text-gray-400 font-light ${montserrat.className}`}>2023/2026</p>
+                <div className="flex items-center gap-4 mt-1">
+                  <p className={`text-gray-200 font-medium ${montserrat.className}`}>
+                    Ganpat University [GUNI]
+                  </p>
+                  <div className="flex-1 border-b border-[#222222]"></div>
+                  <p className={`text-gray-200 font-medium ${montserrat.className}`}>
+                    BCA
+                  </p>
+                </div>
+                <p className={`text-sm text-gray-400 mt-2 font-light ${montserrat.className}`}>
+                  Ampics
+                </p>
+              </div>
+            </div>
+          </div>
 
           {/* Projects Section */}
-          <GridItem colSpan={{ base: 1, md: 2 }}>
-            <VStack 
-              spacing={6} 
-              align="stretch" 
-              bg="gray.800" 
-              p={8} 
-              borderRadius="xl"
-              boxShadow="lg"
-            >
-              <Heading 
-                size="lg" 
-                textTransform="uppercase" 
-                color="blue.400" 
-                textAlign="center"
-              >
-                Projects
-              </Heading>
-              <Grid 
-                templateColumns={{ 
-                  base: "1fr", 
-                  sm: "repeat(2, 1fr)", 
-                  lg: "repeat(4, 1fr)" 
-                }} 
-                gap={6}
-              >
-                {projects.map((project, index) => (
-                  <VStack 
-                    key={index} 
-                    spacing={4} 
-                    bg="gray.700" 
-                    borderRadius="xl" 
-                    overflow="hidden"
-                    transition="all 0.3s"
-                    _hover={{ transform: "scale(1.05)", boxShadow: "xl" }}
-                  >
-                    <Image 
-                      src={project.image} 
-                      alt={project.title} 
-                      objectFit="cover" 
-                      h="200px" 
-                      w="full"
-                    />
-                    <VStack spacing={3} p={4} align="start" w="full">
-                      <Heading size="md">{project.title}</Heading>
-                      <Text color="gray.400" fontSize="sm">
-                        {project.description}
-                      </Text>
-                      
-                      <VStack align="start" w="full">
-                        <Text color="blue.400" fontWeight="bold">Tech Stack</Text>
-                        <HStack flexWrap="wrap">
-                          {project.techStack.map((tech, idx) => (
-                            <Text 
-                              key={idx} 
-                              bg="gray.600" 
-                              px={2} 
-                              py={1} 
-                              borderRadius="full" 
-                              fontSize="xs"
-                            >
-                              {tech}
-                            </Text>
-                          ))}
-                        </HStack>
-                      </VStack>
+          <div className="mt-8 bg-[#111111] rounded-xl p-6 shadow-xl">
+            <div className="flex items-center gap-3 mb-8">
+              <IoAdd className="text-sky-400 text-xl" />
+              <h3 className={`text-xl font-bold tracking-wider text-sky-500 ${montserrat.className}`}>
+                PROJECTS
+              </h3>
+            </div>
 
-                      <HStack w="full">
-                        <Button 
-                          leftIcon={<FaGithub />} 
-                          variant="outline" 
-                          colorScheme="blue" 
-                          size="sm" 
-                          w="full"
-                        >
-                          Code
-                        </Button>
-                        <Button 
-                          leftIcon={<FaExternalLinkAlt />} 
-                          colorScheme="blue" 
-                          size="sm" 
-                          w="full"
-                        >
-                          Live
-                        </Button>
-                      </HStack>
-                    </VStack>
-                  </VStack>
-                ))}
-              </Grid>
-            </VStack>
-          </GridItem>
-        </Grid>
-      </Container>
-    </Box>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {projects.map((project, index) => (
+                <div 
+                  key={index}
+                  className="bg-[#1a1a1a] rounded-lg overflow-hidden transition-transform hover:scale-105"
+                >
+                  <Image
+                    src={project.image}
+                    alt={project.title}
+                    width={400}
+                    height={200}
+                    className="w-full h-48 object-cover"
+                  />
+                  
+                  <div className="p-5">
+                    <h4 className={`font-bold text-xl mb-3 text-sky-100 ${montserrat.className}`}>
+                      {project.title}
+                    </h4>
+                    <p className={`text-gray-300 text-sm mb-4 line-clamp-3 font-light ${montserrat.className}`}>
+                      {project.description}
+                    </p>
+
+                    <div className="mb-4">
+                      <div className="flex items-center gap-2 mb-2">
+                        <FaTools className="text-sky-400" />
+                        <span className={`text-sm font-semibold text-sky-500 ${montserrat.className}`}>
+                          Tech Stack
+                        </span>
+                      </div>
+                      <div className="flex flex-wrap gap-2">
+                        {project.techStack.map((tech, idx) => (
+                          <span
+                            key={idx}
+                            className={`text-xs bg-[#2a2a2a] text-gray-200 px-2 py-1 rounded-full font-light ${montserrat.className}`}
+                          >
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div className="flex gap-3">
+                      <a
+                        href={project.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={`flex items-center gap-2 bg-[#2a2a2a] hover:bg-[#333333] text-gray-200 px-4 py-2 rounded-lg text-sm font-medium transition-colors ${montserrat.className}`}
+                      >
+                        <FaGithub /> Code
+                      </a>
+                      <a
+                        href={project.live}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={`flex items-center gap-2 bg-sky-600 hover:bg-sky-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors ${montserrat.className}`}
+                      >
+                        <FaExternalLinkAlt /> Live
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          
+
+        {/* Certifications Section */}
+        <div className="mt-8 bg-[#111111] rounded-lg p-6">
+          <div className="flex items-center gap-2 mb-4">
+            <IoAdd className="text-sky-400" />
+            <h3 className={`uppercase tracking-wider text-sky-500 font-semibold ${montserrat.className}`}>
+              CERTIFICATIONS & INTERNSHIPS
+            </h3>
+          </div>
+          
+          <div>
+            <h4 className={`font-semibold text-gray-100 ${montserrat.className}`}>
+              J.P. Morgan Chase
+            </h4>
+            <p className={`text-gray-400 font-light ${montserrat.className}`}>
+              Virtual Internship • One Month
+            </p>
+            <p className={`text-sm text-gray-400 mt-2 font-light ${montserrat.className}`}>
+              Software Engineer
+            </p>
+          </div>
+        </div>
+
+        {/* Footer */}
+        <footer className="mt-12 pt-6 text-center">
+          <p className={`text-gray-400 font-light ${montserrat.className}`}>
+            © 2024 Vyas Vishal. All Rights Reserved.
+          </p>
+        </footer>
+
+      </div>
+    </main>
+
+    </LocomotiveScrollProvider>
   );
 };
 

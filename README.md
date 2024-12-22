@@ -104,9 +104,9 @@
 
 ### 🏆 Achievements
 
-- 🥈 **Solo Hackathon Winner** - 2nd place in AMPICS Hackathon
-- 🎯 **Group Discussion Champion** at Ganpat University
 - 👥 **Head of CodeLab** - Leading student innovation initiatives
+- 🥈 **Solo Hackathon Winner** - AMPICS Hackathon
+- 🎯 **Group Discussion Champion** at Ganpat University
 
 ---
 

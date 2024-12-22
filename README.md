@@ -1,36 +1,131 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<h1 align="center">
+  <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=500&size=40&pause=1000&color=6E57F7&center=true&vCenter=true&random=false&width=600&height=100&lines=Hi+%F0%9F%91%8B%2C+I'm+Vishal+Vyas;Full+Stack+Developer" />
+</h1>
 
-## Getting Started
+<p align="center">
+  <img src="https://komarev.com/ghpvc/?username=Vyas106&color=6E57F7" alt="Profile views" />
+  <a href="mailto:vyasvishal.work@gmail.com">
+    <img src="https://img.shields.io/badge/Email-vyasvishal.work%40gmail.com-6E57F7?style=flat&logo=gmail" />
+  </a>
+  <a href="https://www.linkedin.com/in/vishal-vyas-5292692aa">
+    <img src="https://img.shields.io/badge/LinkedIn-Vishal_Vyas-6E57F7?style=flat&logo=linkedin" />
+  </a>
+</p>
 
-First, run the development server:
+<div align="center">
+  <h3>💫 About Me</h3>
+  <p>
+    Full Stack Software Engineer passionate about building end-to-end web applications and exploring new technologies. Currently leading CodeLab, fostering innovation through workshops and hackathons.
+  </p>
+</div>
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 🛠️ Tech Stack
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+<details open>
+<summary>Languages & Frameworks</summary>
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
+![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![Next.js](https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=next.js&logoColor=white)
+![Express.js](https://img.shields.io/badge/Express.js-404D59?style=for-the-badge)
+![Java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)
+![GSAP](https://img.shields.io/badge/GSAP-88CE02?style=for-the-badge&logo=greensock&logoColor=white)
+![Framer Motion](https://img.shields.io/badge/Framer_Motion-0055FF?style=for-the-badge&logo=framer&logoColor=white)
 
-## Learn More
+</details>
 
-To learn more about Next.js, take a look at the following resources:
+<details open>
+<summary>Databases & Cloud</summary>
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)
+![MySQL](https://img.shields.io/badge/MySQL-00000F?style=for-the-badge&logo=mysql&logoColor=white)
+![Firebase](https://img.shields.io/badge/Firebase-039BE5?style=for-the-badge&logo=firebase)
+![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)
+![Prisma](https://img.shields.io/badge/Prisma-3982CE?style=for-the-badge&logo=prisma&logoColor=white)
+![Cloudinary](https://img.shields.io/badge/Cloudinary-0000FF?style=for-the-badge&logo=cloudinary&logoColor=white)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+</details>
 
-## Deploy on Vercel
+<details open>
+<summary>Tools & Technologies</summary>
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
+![Kubernetes](https://img.shields.io/badge/Kubernetes-326CE5?style=for-the-badge&logo=kubernetes&logoColor=white)
+![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)
+![Figma](https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white)
+![Postman](https://img.shields.io/badge/Postman-FF6C37?style=for-the-badge&logo=postman&logoColor=white)
+![HuggingFace](https://img.shields.io/badge/HuggingFace-FFD21E?style=for-the-badge)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+</details>
+
+---
+
+### 🚀 Featured Projects
+
+<table>
+  <tr>
+    <td width="50%">
+      <h3 align="center">FormLab</h3>
+      <div align="center">
+        <a href="https://formlab.vercel.app/" target="_blank">
+          <img src="https://raw.githubusercontent.com/Vyas106/Vyas106/main/formlab-preview.png" width="100%" alt="FormLab"/>
+        </a>
+        <p>
+          <a href="https://formlab.vercel.app/" target="_blank">
+            <img src="https://img.shields.io/badge/Live_Demo-6E57F7?style=for-the-badge&logo=vercel&logoColor=white" />
+          </a>
+        </p>
+        <p><strong>Next.js, Prisma, PostgreSQL, Clerk Auth</strong> - Open-source form builder with secure authentication and GDPR compliance.</p>
+      </div>
+    </td>
+    <td width="50%">
+      <h3 align="center">CodeLab</h3>
+      <div align="center">
+        <a href="https://codelab-one.vercel.app/" target="_blank">
+          <img src="https://raw.githubusercontent.com/Vyas106/Vyas106/main/codelab-preview.png" width="100%" alt="CodeLab"/>
+        </a>
+        <p>
+          <a href="https://codelab-one.vercel.app/" target="_blank">
+            <img src="https://img.shields.io/badge/Live_Demo-6E57F7?style=for-the-badge&logo=vercel&logoColor=white" />
+          </a>
+        </p>
+        <p><strong>Student-led initiative</strong> - Promoting innovation and skill development through workshops and hackathons.</p>
+      </div>
+    </td>
+  </tr>
+</table>
+
+---
+
+### 🏆 Achievements
+
+- 🥈 **Solo Hackathon Winner** - 2nd place in AMPICS Hackathon
+- 🎯 **Group Discussion Champion** at Ganpat University
+- 👥 **Head of CodeLab** - Leading student innovation initiatives
+
+---
+
+### 📈 GitHub Stats
+
+<div align="center">
+  <img src="https://github-readme-stats.vercel.app/api?username=Vyas106&show_icons=true&theme=tokyonight" alt="GitHub Stats" />
+  <img src="https://github-readme-streak-stats.herokuapp.com/?user=Vyas106&theme=tokyonight" alt="GitHub Streak" />
+</div>
+
+---
+
+<div align="center">
+  <h3>🤝 Let's Connect!</h3>
+  <p>Open for collaborations and interesting projects.</p>
+  <a href="mailto:vyasvishal.work@gmail.com">
+    <img src="https://img.shields.io/badge/Email-Connect-6E57F7?style=for-the-badge&logo=gmail" />
+  </a>
+  <a href="https://www.linkedin.com/in/vishal-vyas-5292692aa">
+    <img src="https://img.shields.io/badge/LinkedIn-Connect-6E57F7?style=for-the-badge&logo=linkedin" />
+  </a>
+</div>
